@@ -17,3 +17,7 @@ def signupaccount(request):
             user.save()
             login(request, user)
             return redirect('home')
+        else:
+            return render(request, 'signupaccount.html',
+                          {'form': UserCreationForm,
+                           'error': 'Passwords do not match'})
