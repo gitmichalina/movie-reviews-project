@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.db import IntegrityError
 from .forms import UserCreateForm
+from django.contrib.auth.decorators import login_required
 
 
 def signupaccount(request):
@@ -29,6 +30,7 @@ def signupaccount(request):
                           {'form': UserCreateForm, 'error': 'Passwords do not match'})
 
 
+@login_required
 def logoutaccount(request):
     logout(request)
     return redirect('home')
